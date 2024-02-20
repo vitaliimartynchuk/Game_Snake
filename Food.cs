@@ -1,6 +1,6 @@
 ﻿namespace ConsoleApp_SnakeGame
 {
-    public class Food : Snake
+    public class Food 
     {
         public char c = '*'; // їжа
         public char[,] foodArr; // окремий масив де малюється їжа щоб не заважати руху змії
@@ -8,9 +8,12 @@
         public int F_y;
         public int countGame = -1; // кількість з'їдань їжі
 
+        public int S_R = PlayField.R;
+        public int S_S = PlayField.S;
+
         public Food(int snakeX, int snakeY)
         {
-            foodArr = new char[R, S];
+            foodArr = new char[S_R, S_S];
             GenerateFood(snakeX, snakeY);
         }
 
@@ -28,8 +31,8 @@
             {
                 do
                 {
-                    F_x = random.Next(R); 
-                    F_y = random.Next(S);
+                    F_x = random.Next(S_R); 
+                    F_y = random.Next(S_S);
                 } while (F_x == snakeX && F_y == snakeY); // інакше генеруємо нові координати поки не попадемо на місце без голови
 
                 foodArr[F_x, F_y] = c;

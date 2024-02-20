@@ -1,6 +1,6 @@
 ﻿namespace ConsoleApp_SnakeGame
 {
-    public class Snake : PlayField
+    public class Snake 
     {
         public char[,] snakeArr; // масив ігрового поля де рухається змія
         public List<(int, int)> tail; // список координат хвоста змії
@@ -10,6 +10,9 @@
 
         public int S_x; // координати голови змії
         public int S_y;
+
+        public int S_R = PlayField.R;
+        public int S_S = PlayField.S;
 
         public enum Direction
         {
@@ -25,16 +28,16 @@
         {
             S_x = 0;
             S_y = 0;
-            snakeArr = new char[R, S];
+            snakeArr = new char[S_R, S_S];
             FillArr(snakeArr, a, b);
             tail = new List<(int, int)>();
         }
 
         private void FillArr(char[,] snakeArr, char a, char b) // початкове заповнення поля гри
         {
-            for (int i = 0; i < R; i++)
+            for (int i = 0; i < S_R; i++)
             {
-                for (int j = 0; j < S; j++)
+                for (int j = 0; j < S_S; j++)
                 {
                     snakeArr[i, j] = a;
                 }
@@ -104,13 +107,13 @@
             int S_x2 = S_x;
             int S_y2 = S_y;
 
-            if (S_y != S - 1) // перевірка на вихід за межі поля
+            if (S_y != S_S - 1) // перевірка на вихід за межі поля
             {
                 Swap(ref snakeArr[S_x, S_y], ref snakeArr[S_x, S_y + 1]); // робимо хід голови
                 S_y++;
                 tail.Insert(0, (S_x, S_y)); // додаємо нове місце у список
             }
-            else 
+            else
             {
                 Swap(ref snakeArr[S_x, S_y], ref snakeArr[S_x, 0]);
                 S_y = 0;
@@ -141,8 +144,8 @@
             }
             else
             {
-                Swap(ref snakeArr[S_x, S_y], ref snakeArr[S_x, S - 1]);
-                S_y = S - 1;
+                Swap(ref snakeArr[S_x, S_y], ref snakeArr[S_x, S_S - 1]);
+                S_y = S_S - 1;
                 tail.Insert(0, (S_x, S_y));
             }
 
@@ -162,7 +165,7 @@
             int S_x2 = S_x;
             int S_y2 = S_y;
 
-            if (S_x != R - 1)
+            if (S_x != S_R - 1)
             {
                 Swap(ref snakeArr[S_x, S_y], ref snakeArr[S_x + 1, S_y]);
                 S_x++;
@@ -199,8 +202,8 @@
             }
             else
             {
-                Swap(ref snakeArr[S_x, S_y], ref snakeArr[R - 1, S_y]);
-                S_x = R - 1;
+                Swap(ref snakeArr[S_x, S_y], ref snakeArr[S_R - 1, S_y]);
+                S_x = S_R - 1;
                 tail.Insert(0, (S_x, S_y));
             }
 
