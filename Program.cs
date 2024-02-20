@@ -13,18 +13,18 @@
 
             PlayField playField = new PlayField();
             Snake snake = new Snake();
-            Food food = new Food(snake.S_x, snake.S_y);
+            Food food = new Food(snake.S_X, snake.S_Y);
 
 
             while (true) // цикл ходу змії
             {
-                playField.Draw(snake.snakeArr, food.foodArr); // малюємо все
-                Console.WriteLine($"Score: " + food.countGame);
+                playField.Draw(snake.SnakeArr, food.FoodArr); // малюємо все
+                Console.WriteLine($"Score: " + food.CountGame);
 
 
-                if (food.countGame > record)
+                if (food.CountGame > record)
                 {
-                    record = food.countGame;
+                    record = food.CountGame;
                     recordFile.RecordInFile(record); // записуємо рекрд у файл якщо він збільшився
                 }
                 Console.WriteLine($"Record: " + record);
@@ -44,7 +44,7 @@
                 }
 
 
-                snake.MoveHead(food.F_x, food.F_y); // рух голови
+                snake.MoveHead(food.F_X, food.F_Y); // рух голови
                  
 
                 if (snake.EndGame()) // перевірка на закінчення гри
@@ -66,14 +66,14 @@
                     {
                         // Початок нової гри: обнулення змінних і т.д.
                         snake = new Snake();
-                        food = new Food(snake.S_x, snake.S_y);
+                        food = new Food(snake.S_X, snake.S_Y);
                         continue;
                     }
                 }
 
 
-                snake.MoveTail(food.F_x, food.F_y); // рух хвоста
-                food.GenerateFood(snake.S_x, snake.S_y); // генеруємо їжу
+                snake.MoveTail(food.F_X, food.F_Y); // рух хвоста
+                food.GenerateFood(snake.S_X, snake.S_Y); // генеруємо їжу
 
 
                 Thread.Sleep(350); // Затримка у мілісекундах 

@@ -2,17 +2,17 @@
 {
     public class Snake 
     {
-        public char[,] snakeArr; // масив ігрового поля де рухається змія
-        public List<(int, int)> tail; // список координат хвоста змії
+        private char[,] snakeArr; // масив ігрового поля де рухається змія
+        private List<(int, int)> tail; // список координат хвоста змії
 
-        public char a = ' ';
-        public char b = '■';
+        private char a = ' ';
+        private char b = '■';
 
-        public int S_x; // координати голови змії
-        public int S_y;
+        private int S_x; // координати голови змії
+        private int S_y;
 
-        public int S_R = PlayField.R;
-        public int S_S = PlayField.S;
+        private int S_R = PlayField.R;
+        private int S_S = PlayField.S;
 
         public enum Direction
         {
@@ -27,10 +27,59 @@
         public Snake()
         {
             S_x = 0;
-            S_y = 0;
+            S_y = 0; 
             snakeArr = new char[S_R, S_S];
             FillArr(snakeArr, a, b);
             tail = new List<(int, int)>();
+        }
+
+        // Властивості для доступу до приватних змінних
+        public char[,] SnakeArr
+        {
+            get { return snakeArr; }
+            private set { snakeArr = value; }
+        }
+
+        public List<(int, int)> Tail
+        {
+            get { return tail; }
+            private set { tail = value; }
+        }
+
+        public char A
+        {
+            get { return a; }
+            private set { a = value; }
+        }
+
+        public char B
+        {
+            get { return b; }
+            private set { b = value; }
+        }
+
+        public int S_X
+        {
+            get { return S_x; }
+            private set { S_x = value; }
+        }
+
+        public int S_Y
+        {
+            get { return S_y; }
+            private set { S_y = value; }
+        }
+
+        public int S_RR
+        {
+            get { return S_R; }
+            private set { S_R = value; }
+        }
+
+        public int S_SS
+        {
+            get { return S_S; }
+            private set { S_S = value; }
         }
 
         private void FillArr(char[,] snakeArr, char a, char b) // початкове заповнення поля гри
